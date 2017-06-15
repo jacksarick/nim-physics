@@ -5,7 +5,7 @@ include math
 ###########
 
 # Constants
-var G: int = 1
+var G: float = 1.0
 
 # Square root
 ##Int -> Int isn't standard
@@ -35,8 +35,13 @@ proc `<->`(a: Vector, b: Vector): int =
 ## They have position, velocity, acceleration, and mass
 type Object = tuple[p: Vector, v: Vector, a: Vector, m: int]
 
-proc gravity(m1, m2: Object): Vector = 
-  return (x: 0, y: 0)
+proc gravity(a, b: Object): Vector =
+  let
+    force = G * ((a.m * b.m) / (a.p <-> b.p))
+    x_a: int = toInt(cos(force))
+    y_a: int = toInt(sin(force))
+
+  return (x: x_a, y: y_a)
 
 ##############
 # Simulation #
