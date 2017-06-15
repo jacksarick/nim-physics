@@ -41,6 +41,7 @@ proc gravity(a, b: Object): Vector =
     x_a: int = toInt(cos(force))
     y_a: int = toInt(sin(force))
 
+  # if force == inf: return (x: 0, y: 0)
   return (x: x_a, y: y_a)
 
 ##############
@@ -62,8 +63,12 @@ proc update_object(obj: Object): Object =
 
 # Create objects
 var
-  a: Vector = (x: 0, y:0)
-  b: Vector = (x: 1, y:1)
+  planet: Object = ((x: 0, y:0), (x: 0, y:0), (x: 0, y:0), 10)
+  ship: Object = ((x: 5, y:5), (x: 0, y:0), (x: 0, y:0), 1)
 
-# Run the world
-echo a <-> b 
+echo ship
+while true:
+  ship.a = ship.a + gravity(ship, planet)
+  ship = update_object(ship)
+  echo ship
+  discard readline(stdin)
