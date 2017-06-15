@@ -4,6 +4,9 @@ include math
 # General #
 ###########
 
+# Constants
+var G: int = 1
+
 # Square root
 ##Int -> Int isn't standard
 proc sqrt(a: int): int = 
@@ -32,11 +35,14 @@ proc `<->`(a: Vector, b: Vector): int =
 ## They have position, velocity, acceleration, and mass
 type Object = tuple[p: Vector, v: Vector, a: Vector, m: int]
 
+proc gravity(m1, m2: Object): Vector = 
+  return (x: 0, y: 0)
+
 ##############
 # Simulation #
 ##############
 
-#Update an object's qualities
+# Update an object's qualities
 proc update_object(obj: Object): Object =
   let
     pos: Vector = (x: obj.p.x + obj.v.x, y: obj.p.y + obj.v.y)
