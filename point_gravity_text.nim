@@ -41,7 +41,6 @@ proc gravity(a, b: Object): Vector =
     y_a: float = sin(force) * (if a.p.y > a.p.y: 1 else: -1)
 
   # if force == inf: return (x: 0, y: 0)
-  echo((x: x_a, y: y_a))
   return (x: x_a, y: y_a)
 
 ##############
@@ -71,4 +70,6 @@ while true:
   ship.a = ship.a + gravity(ship, planet)
   ship = update_object(ship)
   echo ship
+  echo gravity(ship, planet)
+  echo "\n"
   discard readline(stdin)
